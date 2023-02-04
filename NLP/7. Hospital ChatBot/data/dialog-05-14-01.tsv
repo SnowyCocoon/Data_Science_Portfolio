@@ -1,0 +1,15 @@
+Interlocutor	Text	Acts
+user	Cześć	greeting()
+system	Witamy w systemie przychodni dr. Janet.	greeting()
+user	Chciałem prosić o wypisanie kolejnej recepty na lek X	request(prescription(medicine=X))
+system	Proszę podać swój identyfikator w systemie.	request(id)
+user	43434	inform(id=43434)
+system	Proszę podać swoje hasło.	request(password)
+user	123456	inform(password=123456)
+system	Z informacji wynika, że lekarz może wypisać jeszcze: 2 recepty na lek X. Czy chciałby pan otrzymać E-Receptę, czy papierową?	inform(prescription_limit=2; medicine=X)&request(prescription_type)
+user	proszę o E-receptę	inform(prescription_type=E-recepta)
+system	E-Receptę otrzyma pan w pliku .pdf na swój adres email, oraz na numer kontaktowy w postaci kodu. E-Receptę można w takiej formie zrealizować w każdej aptece
+user	dziękuję	thankyou()
+system	Czy można w czymś jeszcze pomóc?	(bye()&request())
+user	Nie, to wszystko. Dziękuję za rozmowę	negate()&thanyou()
+system	Dziękujemy za skorzystanie z usług przychodni dr. Janet. Zapraszamy ponownie!	bye()&thankyou() 	

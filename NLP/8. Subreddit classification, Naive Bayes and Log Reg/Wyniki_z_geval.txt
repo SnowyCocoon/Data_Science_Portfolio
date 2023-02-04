@@ -1,0 +1,6 @@
+Wyniki z geval:
+Likelihood      0.0000
+Accuracy        0.7367
+F1.0            0.4367
+Precision       0.8997
+Recall          0.2883

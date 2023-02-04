@@ -1,0 +1,29 @@
+{
+    "user_action": [],
+    "system_action": [],
+    "belief_state": {
+        "appointment": {
+            "name": "",
+            "location": "",
+            "doctor": "",
+            "url": "",
+            "type": "",
+            "datetime": ""
+        },
+        "register": {
+            "name": "",
+            "secondname": "",
+            "username": "",
+            "password": ""
+        },
+        "request_information":{
+            "doctor": "",
+            "datetime": "",
+            "appointment": "",
+            "appointment/type": ""
+        }
+    },
+    "request_state": {},
+    "terminated": false,
+    "history": []
+}

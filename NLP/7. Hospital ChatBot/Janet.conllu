@@ -1,0 +1,922 @@
+# text: Chciałem prosić o wypisanie kolejnej recepty na lek X
+# intent: prescription/request
+# slots: 
+1	chciałem	prescription/request	NoLabel
+2	prosić	prescription/request	NoLabel
+3	o	prescription/request	NoLabel
+4	wypisanie	prescription/request	NoLabel
+5	kolejnej	prescription/request	NoLabel
+6	recepty	prescription/request	B-prescription/type
+7	na	prescription/request	NoLabel
+8	lek	prescription/request	B-prescription/medicine
+9	x	prescription/request	I-prescription/medicine
+
+# text: proszę o E-receptę
+# intent: prescription/request
+# slots: 
+1	proszę	prescription/request	NoLabel
+2	o	prescription/request	NoLabel
+3	ereceptę	prescription/request	B-prescription/type
+
+# text: dziękuję
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+
+# text: Nie to wszystko Dziękuję za rozmowę
+# intent: end_conversation
+# slots: 
+1	nie	end_conversation	B-deny
+2	to	end_conversation	B-end_conversation
+3	wszystko	end_conversation	I-end_conversation
+4	dziękuję	end_conversation	I-end_conversation
+5	za	end_conversation	I-end_conversation
+6	rozmowę	end_conversation	I-end_conversation
+
+# text: Dzień dobry!
+# intent: greeting 
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: dzień dobry chciałbym umówić się na wizytę u lekarza internisty
+# intent: appointment/create_appointment
+# slots: 
+1	dzień	appointment/create_appointment	B-greeting
+2	dobry	appointment/create_appointment	I-greeting
+3	chciałbym	appointment/create_appointment	NoLabel
+4	umówić	appointment/create_appointment	NoLabel
+5	się	appointment/create_appointment	NoLabel
+6	na	appointment/create_appointment	NoLabel
+7	wizytę	appointment/create_appointment	B-appointment
+8	u	appointment/create_appointment	NoLabel
+9	lekarza	appointment/create_appointment	B-doctor
+10	internisty	appointment/create_appointment	I-doctor
+
+# text: Nie mam swojego identyfikatora nie pamiętam
+# intent: login/forgot_id
+# slots: 
+1	nie	login/forgot_id	NoLabel
+2	mam	login/forgot_id	NoLabel
+3	swojego	login/forgot_id	NoLabel
+4	identyfikatora	login/forgot_id	NoLabel
+5	nie	login/forgot_id	NoLabel
+6	pamiętam	login/forgot_id	NoLabel
+
+# text: mój identyfikator to: <identyfikator>
+# intent: login/enter_id
+# slots: 
+1	mój	login/enter_id	NoLabel
+2	identyfikator	login/enter_id	NoLabel
+3	to	login/enter_id	NoLabel
+4	<identyfikator>	login/enter_id	NoLabel
+
+# text: czy są dostępne jakieś wizyty w terminie 20.04.2021 u dr Adam Skrzypczak?
+# intent: request_information/available_dates
+# slots: 
+1	czy	request_information/available_dates	NoLabel
+2	są	request_information/available_dates	NoLabel
+3	dostępne	request_information/available_dates	NoLabel
+4	jakieś	request_information/available_dates	NoLabel
+5	wizyty	request_information/available_dates	B-appointment
+6	w	request_information/available_dates	NoLabel
+7	terminie	request_information/available_dates	NoLabel
+8	20.04.2021	request_information/available_dates	B-datetime
+9	u	request_information/available_dates	NoLabel
+10	dr	request_information/available_dates	B-doctor
+11	adam	request_information/available_dates	I-doctor
+12	skrzypczak	request_information/available_dates	I-doctor
+
+# text: tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: jakie są dostępne terminy wizyt na 20.04.2021 u dowolnego internisty?
+# intent: request_information/available_dates
+# slots: 
+1	jakie	request_information/available_dates	NoLabel
+2	są	request_information/available_dates	NoLabel
+3	dostępne	request_information/available_dates	NoLabel
+4	terminy	request_information/available_dates	NoLabel
+5	wizyt	request_information/available_dates	B-appointment
+6	na	request_information/available_dates	NoLabel
+7	20.04.2021	request_information/available_dates	B-datetime
+8	u	request_information/available_dates	NoLabel
+9	dowolnego	request_information/available_dates	NoLabel
+10	internisty	request_information/available_dates	B-doctor
+
+# text: prosze o rejestrację do mrożego na 12:00 dziękuję to wszystko
+# intent: appointment/create_appointment
+# slots: 
+1	prosze	appointment/create_appointment	NoLabel
+2	o	appointment/create_appointment	NoLabel
+3	rejestrację	appointment/create_appointment	NoLabel
+4	do	appointment/create_appointment	NoLabel
+5	mrożego	appointment/create_appointment	B-doctor
+6	na	appointment/create_appointment	NoLabel
+7	12:00	appointment/create_appointment	B-datetime
+8	dziękuję	appointment/create_appointment	B-end_conversation
+9	to	appointment/create_appointment	I-end_conversation
+10	wszystko	appointment/create_appointment	I-end_conversation
+
+# text: Witam Chciałbym zarezerwować wizytę u lekarza
+# intent: appointment/create_appointment
+# slots: 
+1	witam	appointment/create_appointment	B-greeting
+2	chciałbym	appointment/create_appointment	NoLabel
+3	zarezerwować	appointment/create_appointment	NoLabel
+4	wizytę	appointment/create_appointment	B-appointment
+5	u	appointment/create_appointment	NoLabel
+6	lekarza	appointment/create_appointment	B-doctor
+
+# text: 15.04.2021 12:00
+# intent: appointment/set_date
+# slots: 
+1	15.04.2021	appointment/set_date	B-datetime
+2	12:00	appointment/set_date	I-datetime
+
+# text: Ok dziękuję
+# intent: affirm
+# slots: 
+1	ok	affirm	B-affirm
+2	dziękuję	affirm	B-end_conversation
+
+# text: Dzień dobry
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chciałbym umówić się na wizytę u specjalisty
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	umówić	appointment/create_appointment	NoLabel
+3	się	appointment/create_appointment	NoLabel
+4	na	appointment/create_appointment	NoLabel
+5	wizytę	appointment/create_appointment	B-appointment
+6	u	appointment/create_appointment	NoLabel
+7	specjalisty	appointment/create_appointment	B-doctor
+
+# text: Proszę podać listę specjalistów
+# intent: request_information/doctors
+# slots: 
+1	proszę	request_information/doctors	NoLabel
+2	podać	request_information/doctors	NoLabel
+3	listę	request_information/doctors	NoLabel
+4	specjalistów	request_information/doctors	NoLabel
+
+# text: Chciałbym wizytę u  Internista Andrzej Mroży
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	wizytę	appointment/create_appointment	NoLabel
+3	u	appointment/create_appointment	NoLabel
+4	internista	appointment/create_appointment	B-doctor
+5	andrzej	appointment/create_appointment	I-doctor
+6	mroży	appointment/create_appointment	I-doctor
+
+# text: wybieram termin 15.04.2021 o 14:30
+# intent: appointment/set_date appointment/set_time
+# slots: 
+1	wybieram	appointment/set_date	NoLabel
+2	termin	appointment/set_date	NoLabel
+3	15.04.2021	appointment/set_date	B-datetime
+4	o	appointment/set_time	NoLabel
+5	14:30	appointment/set_time	B-datetime
+
+# text: dziękuję
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+
+# text: Dzień dobry
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chciałabym odwołać wizytę
+# intent: appointment/cancel
+# slots: 
+1	chciałabym	appointment/cancel	NoLabel
+2	odwołać	appointment/cancel	NoLabel
+3	wizytę	appointment/cancel	B-appointment
+
+# text: owszem
+# intent: affirm
+# slots: 
+1	owszem	affirm	B-affirm
+
+# text: ok dzięki gdzie mam wizytę u dentysty Anny
+# intent: appointment/where
+# slots: 
+1	ok	appointment/where	B-affirm
+2	dzięki	appointment/where	NoLabel
+3	gdzie	appointment/where	NoLabel
+4	mam	appointment/where	NoLabel
+5	wizytę	appointment/where	B-appointment
+6	u	appointment/where	NoLabel
+7	dentysty	appointment/where	B-doctor
+8	anny	appointment/where	I-doctor
+
+# text: a jaki adres
+# intent: request_information/location
+# slots: 
+1	a	request_information/location	NoLabel
+2	jaki	request_information/location	NoLabel
+3	adres	request_information/location	NoLabel
+
+# text: Dzień dobry!
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chciałbym zarezerować wizytę u lekarza
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	zarezerować	appointment/create_appointment	NoLabel
+3	wizytę	appointment/create_appointment	B-appointment
+4	u	appointment/create_appointment	NoLabel
+5	lekarza	appointment/create_appointment	B-doctor
+
+# text: Chciałbym umówić wyzytę z dermatologiem
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	umówić	appointment/create_appointment	NoLabel
+3	wyzytę	appointment/create_appointment	B-appointment
+4	z	appointment/create_appointment	B-doctor
+5	dermatologiem	appointment/create_appointment	I-doctor
+
+# text: Który ma wcześniejszy termin?
+# intent: appointment/compare_dates
+# slots: 
+1	który	appointment/compare_dates	NoLabel
+2	ma	appointment/compare_dates	NoLabel
+3	wcześniejszy	appointment/compare_dates	NoLabel
+4	termin	appointment/compare_dates	NoLabel
+
+# text: To chciałbym zapisać się do Jana Kowalskiego
+# intent: appointment/create_appointment
+# slots: 
+1	to	appointment/create_appointment	NoLabel
+2	chciałbym	appointment/create_appointment	NoLabel
+3	zapisać	appointment/create_appointment	NoLabel
+4	się	appointment/create_appointment	NoLabel
+5	do	appointment/create_appointment	NoLabel
+6	jana	appointment/create_appointment	B-doctor
+7	kowalskiego	appointment/create_appointment	I-doctor
+
+# text: 15.04 o 14:30
+# intent: appointment/set_date_and_time
+# slots: 
+1	15.04	appointment/set_date_and_time	B-datetime
+2	o	appointment/set_date_and_time	I-datetime
+3	14:30	appointment/set_date_and_time	I-datetime
+
+# text: Ile będzie kosztowała?
+# intent: request_information/cost
+# slots: 
+1	ile	request_information/cost	NoLabel
+2	będzie	request_information/cost	NoLabel
+3	kosztowała	request_information/cost	NoLabel
+
+# text: W jakim gabinecie została umówiona wizyta?
+# intent: appointment/location
+# slots: 
+1	w	appointment/location	NoLabel
+2	jakim	appointment/location	NoLabel
+3	gabinecie	appointment/location	B-appointment/office
+4	została	appointment/location	NoLabel
+5	umówiona	appointment/location	NoLabel
+6	wizyta	appointment/location	B-appointment
+
+# text: Dziękuję to by było wszystko
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	to	end_conversation	I-end_conversation
+3	by	end_conversation	I-end_conversation
+4	było	end_conversation	I-end_conversation
+5	wszystko	end_conversation	I-end_conversation
+
+# text: Dzień dobry!
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chciałbym zarezerwać wizytę
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	zarezerwać	appointment/create_appointment	NoLabel
+3	wizytę	appointment/create_appointment	B-appointment
+
+# text: Jan kowalski
+# intent: appointment/select_doctor
+# slots: 
+1	jan	appointment/select_doctor	B-doctor
+2	kowalski	appointment/select_doctor	I-doctor
+
+# text: proszę o termin 14.04.2021 - 14:30
+# intent: appointment/set_date_time
+# slots: 
+1	proszę	appointment/set_date_time	NoLabel
+2	o	appointment/set_date_time	NoLabel
+3	termin	appointment/set_date_time	NoLabel
+4	14.04.2021	appointment/set_date_time	B-datetime
+6	14:30	appointment/set_date_time	I-datetime
+
+# text: Dziękuję
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+
+# text: Dzień dobry
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chciałabym odebrać receptę
+# intent: prescription/collect
+# slots: 
+1	chciałabym	prescription/collect	NoLabel
+2	odebrać	prescription/collect	NoLabel
+3	receptę	prescription/collect	B-prescription/type
+
+# text: Chciałabym zamówić receptę
+# intent: prescription/request
+# slots: 
+1	chciałabym	prescription/request	NoLabel
+2	zamówić	prescription/request	NoLabel
+3	receptę	prescription/request	B-prescription/type
+
+# text: Tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Dr Anna Kowalska
+# intent: appointment/select_doctor
+# slots: 
+1	dr	appointment/select_doctor	B-doctor
+2	anna	appointment/select_doctor	I-doctor
+3	kowalska	appointment/select_doctor	I-doctor
+
+# text: Proszę zapisać mnie na termin 14.04.2021 13:30
+# intent: appointment/create_appointment
+# slots: 
+1	proszę	appointment/create_appointment	NoLabel
+2	zapisać	appointment/create_appointment	NoLabel
+3	mnie	appointment/create_appointment	NoLabel
+4	na	appointment/create_appointment	NoLabel
+5	termin	appointment/create_appointment	NoLabel
+6	14.04.2021	appointment/create_appointment	B-datetime
+7	13:30	appointment/create_appointment	I-B-datetime
+
+# text: Dziękuje
+# intent: end_conversation
+# slots: 
+1	dziękuje	end_conversation	B-end_conversation
+
+# text: Dzień dobry!
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Dzień dobry Chciałabym sprawdzić wyniki swoich ostatnich badań
+# intent: appointment/results
+# slots: 
+1	dzień	appointment/results	B-greeting
+2	dobry	appointment/results	I-greeting
+3	chciałabym	appointment/results	NoLabel
+4	sprawdzić	appointment/results	NoLabel
+5	wyniki	appointment/results	B-results
+6	swoich	appointment/results	NoLabel
+7	ostatnich	appointment/results	NoLabel
+8	badań	appointment/results	NoLabel
+
+# text: Widzę wyniki badania okulistycznego Czy w pliku powinny znajdować się też dot badań cytologicznych?
+# intent: affirm, appointment/results
+# slots: 
+1	widzę	affirm	NoLabel
+2	wyniki	affirm	B-results
+3	badania	affirm	B-appointment/type
+4	okulistycznego	affirm	I-appointment/type
+5	czy	appointment/results	NoLabel
+6	w	appointment/results	NoLabel
+7	pliku	appointment/results	NoLabel
+8	powinny	appointment/results	NoLabel
+9	znajdować	appointment/results	NoLabel
+10	się	appointment/results	NoLabel
+11	też	appointment/results	NoLabel
+12	dot	appointment/results	NoLabel
+13	badań	appointment/results	B-appointment/type
+14	cytologicznych	appointment/results	I-appointment/type
+
+# text: Teraz chyba widzę wszystko czego potrzebuję Czy możesz mi powiedzieć na kiedy mam umówione następne wizyty?
+# intent: affirm appointment/when
+# slots: 
+1	teraz	affirm	NoLabel
+2	chyba	affirm	NoLabel
+3	widzę	affirm	NoLabel
+4	wszystko	affirm	NoLabel
+5	czego	affirm	NoLabel
+6	potrzebuję	affirm	NoLabel
+7	czy	appointment/when	NoLabel
+8	możesz	appointment/when	NoLabel
+9	mi	appointment/when	NoLabel
+10	powiedzieć	appointment/when	NoLabel
+11	na	appointment/when	NoLabel
+12	kiedy	appointment/when	NoLabel
+13	mam	appointment/when	NoLabel
+14	umówione	appointment/when	NoLabel
+15	następne	appointment/when	NoLabel
+16	wizyty	appointment/when	B-appointment
+
+# text: A o której mam dentystę?
+# intent: appointment/when
+# slots: 
+1	a	appointment/when	NoLabel
+2	o	appointment/when	NoLabel
+3	której	appointment/when	NoLabel
+4	mam	appointment/when	NoLabel
+5	dentystę	appointment/when	B-doctor
+
+# text: Ok Wszystko wiem dzięki!
+# intent: end_conversation
+# slots: 
+1	ok	end_conversation	B-end_conversation
+2	wszystko	end_conversation	I-end_conversation
+3	wiem	end_conversation	I-end_conversation
+4	dzięki	end_conversation	I-end_conversation
+
+# text: Hej
+# intent: greeting
+# slots: 
+1	hej	greeting	B-greeting
+
+# text: Dzień dobry chciałbym umówić się na USG tarczycy
+# intent: appointment/create_appointment
+# slots: 
+1	dzień	appointment/create_appointment	B-greeting
+2	dobry	appointment/create_appointment	I-greeting
+3	chciałbym	appointment/create_appointment	NoLabel
+4	umówić	appointment/create_appointment	NoLabel
+5	się	appointment/create_appointment	NoLabel
+6	na	appointment/create_appointment	NoLabel
+7	usg	appointment/create_appointment	B-appointment/type
+8	tarczycy	appointment/create_appointment	I-appointment/type
+
+# text: Dzień dobry
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chcialbym odebrać wyniki badań gastroskopii
+# intent: result/collect
+# slots: 
+1	chcialbym	result/collect	NoLabel
+2	odebrać	result/collect	NoLabel
+3	wyniki	result/collect	B-results
+4	badań	result/collect	B-appointment/type
+5	gastroskopii	result/collect	I-appointment/type
+
+# text: Jakie mam zaplanowane wizyty?
+# intent: appointment/check_appointments
+# slots: 
+1	jakie	appointment/check_appointments	NoLabel
+2	mam	appointment/check_appointments	NoLabel
+3	zaplanowane	appointment/check_appointments	NoLabel
+4	wizyty?	appointment/check_appointments	NoLabel
+
+# text: Chciałbym przenieść tą wizyte na 21.04.2021
+# intent: appointment/set_date
+# slots: 
+1	chciałbym	appointment/set_date	NoLabel
+2	przenieść	appointment/set_date	NoLabel
+3	tą	appointment/set_date	NoLabel
+4	wizyte	appointment/set_date	B-appointment
+5	na	appointment/set_date	NoLabel
+6	21.04.2021	appointment/set_date	B-datetime
+
+# text: 17:15
+# intent: appointment/set_time
+# slots: 
+1	17:15	appointment/set_time	B-datetime
+
+# text: Dziękuję bardzo
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	bardzo	end_conversation	I-end_conversation
+
+# text: Cześć
+# intent: greeting
+# slots: 
+1	cześć	greeting	B-greeting
+
+# text: Dziękuję to wszystko
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	to	end_conversation	I-end_conversation
+3	wszystko	end_conversation	I-end_conversation
+
+# text: Chciałbym się zapisać na wizytę do okulisty Jakie są dostępne terminy?
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	się	appointment/create_appointment	NoLabel
+3	zapisać	appointment/create_appointment	NoLabel
+4	na	appointment/create_appointment	NoLabel
+5	wizytę	appointment/create_appointment	B-appointment
+6	do	appointment/create_appointment	NoLabel
+7	okulisty	appointment/create_appointment	B-doctor
+8	jakie	appointment/create_appointment	NoLabel
+9	są	appointment/create_appointment	NoLabel
+10	dostępne	appointment/create_appointment	NoLabel
+11	terminy?	appointment/create_appointment	NoLabel
+
+# text: Chciałbym się zapisać na 14-ego jakie są dostępne godziny?
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	się	appointment/create_appointment	NoLabel
+3	zapisać	appointment/create_appointment	NoLabel
+4	na	appointment/create_appointment	NoLabel
+5	14-ego	appointment/create_appointment	B-datetime
+6	jakie	appointment/create_appointment	NoLabel
+7	są	appointment/create_appointment	NoLabel
+8	dostępne	appointment/create_appointment	NoLabel
+9	godziny?	appointment/create_appointment	NoLabel
+
+# text: Chciałbym tą 14:15
+# intent: appointment/set_time
+# slots: 
+1	chciałbym	appointment/set_time	NoLabel
+2	tą	appointment/set_time	NoLabel
+3	14:15	appointment/set_time	B-datetime
+
+# text: Nie posiadam identyfikatora
+# intent: deny
+# slots: 
+1	nie	deny	B-deny 
+2	posiadam	deny	NoLabel
+3	identyfikatora	deny	NoLabel
+
+# text: TAK
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Jan Kowalski
+# intent: register/enter_name
+# slots: 
+1	jan	register/enter_name	B-register/name
+2	kowalski	register/enter_name	I-register/name
+
+# text: jankowalski@gmailcom
+# intent: register/enter_email
+# slots: 
+1	jankowalski@gmailcom	register/enter_email	B-register/email
+
+# text: Dziękuję za pomoc i miłego dnia
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	za	end_conversation	I-end_conversation
+3	pomoc	end_conversation	I-end_conversation
+4	i	end_conversation	NoLabel
+5	miłego	end_conversation	NoLabel
+6	dnia	end_conversation	NoLabel
+
+# text: Cześć
+# intent: greeting
+# slots: 
+1	cześć	greeting	B-greeting
+
+# text: Chciałem zapisać się na spotkanie na jutrzejszy dzień na godziny poranne
+# intent: appointment/create_appointment
+# slots: 
+1	chciałem	appointment/create_appointment	NoLabel
+2	zapisać	appointment/create_appointment	NoLabel
+3	się	appointment/create_appointment	NoLabel
+4	na	appointment/create_appointment	NoLabel
+5	spotkanie	appointment/create_appointment	B-appointment
+6	na	appointment/create_appointment	NoLabel
+7	jutrzejszy	appointment/create_appointment	B-datetime
+8	dzień	appointment/create_appointment	I-datetime
+9	na	appointment/create_appointment	I-datetime
+10	godziny	appointment/create_appointment	I-datetime
+11	poranne	appointment/create_appointment	I-datetime
+
+# text: Pani doktor Kowalskiej
+# intent: appointment/select_doctor
+# slots: 
+1	pani	appointment/select_doctor	NoLabel
+2	doktor	appointment/select_doctor	NoLabel
+3	kowalskiej	appointment/select_doctor	B-doctor
+
+# text: na 11
+# intent: appointment/set_time
+# slots: 
+1	na	appointment/set_time	NoLabel
+2	11	appointment/set_time	B-datetime
+
+# text: Dobrze dziękuję za rozmowę 
+# intent: end_conversation
+# slots: 
+1	dobrze	end_conversation	B-end_conversation
+2	dziękuję	end_conversation	I-end_conversation
+3	za	end_conversation	I-end_conversation
+4	rozmowę	end_conversation	I-end_conversation
+
+# text: Hej
+# intent: greeting
+# slots: 
+1	hej	greeting	B-greeting
+
+# text: Dzień dobry chciałbym umówić się na wizytę do lekarza rodzinnego Najlepiej dzisiaj w godzinach popołudniowych
+# intent: appointment/create_appointment
+# slots: 
+1	dzień	appointment/create_appointment	B-greeting
+2	dobry	appointment/create_appointment	B-greeting
+3	chciałbym	appointment/create_appointment	NoLabel
+4	umówić	appointment/create_appointment	NoLabel
+5	się	appointment/create_appointment	NoLabel
+6	na	appointment/create_appointment	NoLabel
+7	wizytę	appointment/create_appointment	B-appointment
+8	do	appointment/create_appointment	NoLabel
+9	lekarza	appointment/create_appointment	B-doctor
+10	rodzinnego	appointment/create_appointment	I-doctor
+11	najlepiej	appointment/create_appointment	NoLabel
+12	dzisiaj	appointment/create_appointment	B-datetime
+13	w	appointment/create_appointment	I-datetime
+14	godzinach	appointment/create_appointment	I-datetime
+15	popołudniowych	appointment/create_appointment	I-datetime
+
+# text: A czy mogę zapisać się do Pani doktor Zofii Wątroby?
+# intent: appointment/create_appointment
+# slots: 
+1	a	appointment/create_appointment	NoLabel
+2	czy	appointment/create_appointment	NoLabel
+3	mogę	appointment/create_appointment	NoLabel
+4	zapisać	appointment/create_appointment	NoLabel
+5	się	appointment/create_appointment	NoLabel
+6	do	appointment/create_appointment	NoLabel
+7	pani	appointment/create_appointment	B-doctor
+8	doktor	appointment/create_appointment	I-doctor
+9	zofii	appointment/create_appointment	I-doctor
+10	wątroby	appointment/create_appointment	I-doctor
+
+# text: Ten termin mi odpowiada!
+# intent: appointment/confirm
+# slots: 
+1	ten	appointment/confirm	B-affirm
+2	termin	appointment/confirm	I-affirm
+3	mi	appointment/confirm	I-affirm
+4	odpowiada	appointment/confirm	I-affirm
+
+# text: Tak bardzo dziękuję
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+2	bardzo	affirm	I-end_conversation
+3	dziękuję	affirm	I-end_conversation
+
+# text: Chciałbym też od razu zrobić badania morfologii krwi Kiedy mogę przyjść na pobranie krwi?
+# intent: appointment/create_appointment request_information/opening_hours
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	też	appointment/create_appointment	NoLabel
+3	od	appointment/create_appointment	NoLabel
+4	razu	appointment/create_appointment	NoLabel
+5	zrobić	appointment/create_appointment	NoLabel
+6	badania	appointment/create_appointment	B-appointment/type
+7	morfologii	appointment/create_appointment	I-appointment/type
+8	krwi	appointment/create_appointment	I-appointment/type
+9	kiedy	request_information/opening_hours	NoLabel
+10	mogę	request_information/opening_hours	NoLabel
+11	przyjść	request_information/opening_hours	NoLabel
+12	na	request_information/opening_hours	NoLabel
+13	pobranie	request_information/opening_hours	B-appointment/type
+14	krwi	request_information/opening_hours	I-appointment/type
+
+# text: Dziękuję bardzo za informację W takim przypadku to wszystko
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	bardzo	end_conversation	I-end_conversation
+3	za	end_conversation	I-end_conversation
+4	informację	end_conversation	I-end_conversation
+5	w	end_conversation	NoLabel
+6	takim	end_conversation	NoLabel
+7	przypadku	end_conversation	NoLabel
+8	to	end_conversation	NoLabel
+9	wszystko	end_conversation	NoLabel
+
+# text: Dzień dobry
+# intent: greeting
+# slots: 
+1	dzień	greeting	B-greeting
+2	dobry	greeting	I-greeting
+
+# text: Chcialbym odebrac receptę
+# intent: prescription/collect
+# slots: 
+1	chcialbym	prescription/collect	NoLabel
+2	odebrac	prescription/collect	NoLabel
+3	receptę	prescription/collect	B-prescription/type
+
+# text: e-receptę
+# intent: prescription/type_info
+# slots: 
+1	e-receptę	prescription/type_info	B-prescription/type
+
+# text: Tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Chciałbym również umówić spotkanie z lekarzem internistą
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	również	appointment/create_appointment	NoLabel
+3	umówić	appointment/create_appointment	NoLabel
+4	spotkanie	appointment/create_appointment	B-appointment
+5	z	appointment/create_appointment	NoLabel
+6	lekarzem	appointment/create_appointment	B-doctor
+7	internistą	appointment/create_appointment	I-doctor
+
+# text: Tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: 12.04.2021
+# intent: appointment/set_date
+# slots: 
+1	12.04.2021	appointment/set_date	B-datetime
+
+# text: 13:00
+# intent: appointment/set_time
+# slots: 
+1	13:00	appointment/set_time	B-datetime
+
+# text: Tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Gdzie obędzie się wizyta?
+# intent: appointment/where
+# slots: 
+1	gdzie	appointment/where	NoLabel
+2	obędzie	appointment/where	NoLabel
+3	się	appointment/where	NoLabel
+4	wizyta?	appointment/where	B-appointment
+
+# text: Dziękuję za pomoc
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	za	end_conversation	I-end_conversation
+3	pomoc	end_conversation	I-end_conversation
+
+# text: Cześć
+# intent: greeting
+# slots: 
+1	cześć	greeting	B-greeting
+
+# text: Chciałbym się dowiedzieć czy mam umówione jakieś wizyty
+# intent: appointment/check_appointments
+# slots: 
+1	chciałbym	appointment/check_appointments	NoLabel
+2	się	appointment/check_appointments	NoLabel
+3	dowiedzieć	appointment/check_appointments	NoLabel
+4	czy	appointment/check_appointments	NoLabel
+5	mam	appointment/check_appointments	NoLabel
+6	umówione	appointment/check_appointments	NoLabel
+7	jakieś	appointment/check_appointments	NoLabel
+8	wizyty	appointment/check_appointments	B-appointment
+
+# text: Chciałbym odwołać wizytę u internisty
+# intent: appointment/cancel
+# slots: 
+1	chciałbym	appointment/cancel	NoLabel
+2	odwołać	appointment/cancel	NoLabel
+3	wizytę	appointment/cancel	B-appointment
+4	u	appointment/cancel	NoLabel
+5	internisty	appointment/cancel	B-doctor
+
+# text: Tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Jacy lekarze specjaliści przyjmują w państwa przychodni?
+# intent: request_information/doctors
+# slots: 
+1	jacy	request_information/doctors	NoLabel
+2	lekarze	request_information/doctors	B-doctor
+3	specjaliści	request_information/doctors	B-doctor
+4	przyjmują	request_information/doctors	NoLabel
+5	w	request_information/doctors	NoLabel
+6	państwa	request_information/doctors	NoLabel
+7	przychodni?	request_information/doctors	NoLabel
+
+# text: Chciałbym umówić wizytę do doktora Kolano
+# intent: appointment/create_appointment
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	umówić	appointment/create_appointment	NoLabel
+3	wizytę	appointment/create_appointment	B-appointment
+4	do	appointment/create_appointment	NoLabel
+5	doktora	appointment/create_appointment	B-doctor
+6	kolano	appointment/create_appointment	I-doctor
+
+# text: Ten termin mi odpowiada
+# intent: appointment/confirm
+# slots: 
+1	ten	appointment/confirm	NoLabel
+2	termin	appointment/confirm	NoLabel
+3	mi	appointment/confirm	NoLabel
+4	odpowiada	appointment/confirm	NoLabel
+
+# text: tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Nie to wszystko Do widzenia
+# intent: end_conversation
+# slots: 
+1	nie	end_conversation	B-deny
+2	to	end_conversation	B-end_conversation
+3	wszystko	end_conversation	I-end_conversation
+4	do	end_conversation	I-end_conversation
+5	widzenia	end_conversation	I-end_conversation
+
+# text: Cześć
+# intent: greeting
+# slots: 
+1	cześć	greeting	B-end_conversation
+
+# text: Jakie usługi medyczne są dostępne?
+# intent: request_information/medical_services
+# slots: 
+1	jakie	request_information/medical_services	NoLabel
+2	usługi	request_information/medical_services	NoLabel
+3	medyczne	request_information/medical_services	NoLabel
+4	są	request_information/medical_services	NoLabel
+5	dostępne	request_information/medical_services	NoLabel
+
+# text: Chciałbym zapisać się do okulisty Ile kosztuje wizyta?
+# intent: appointment/create_appointment request_information/cost
+# slots: 
+1	chciałbym	appointment/create_appointment	NoLabel
+2	zapisać	appointment/create_appointment	NoLabel
+3	się	appointment/create_appointment	NoLabel
+4	do	appointment/create_appointment	NoLabel
+5	okulisty	appointment/create_appointment	B-doctor
+6	ile	request_information/cost	NoLabel
+7	kosztuje	request_information/cost	NoLabel
+8	wizyta	request_information/cost	B-appointment
+
+# text: Nie ten jest idealny
+# intent: deny
+# slots: 
+1	nie	affirm	B-deny
+2	ten	affirm	NoLabel
+3	jest	affirm	NoLabel
+4	idealny	affirm	NoLabel
+
+# text: Tak
+# intent: affirm
+# slots: 
+1	tak	affirm	B-affirm
+
+# text: Dziękuję za informację
+# intent: end_conversation
+# slots: 
+1	dziękuję	end_conversation	B-end_conversation
+2	za	end_conversation	I-end_conversation
+3	informację	end_conversation	I-end_conversation
+
+# text: Nie dziękuję to wszystko
+# intent: end_conversation
+# slots: 
+1	nie	end_conversation	B-end_conversation
+2	dziękuję	end_conversation	I-end_conversation
+4	to	end_conversation	I-end_conversation
+5	wszystko	end_conversation	I-end_conversation

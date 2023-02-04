@@ -1,0 +1,111 @@
+Text	Intent
+Chciałem prosić o wypisanie kolejnej recepty na lek X	appointment/request_prescription
+proszę o E-receptę	appointment/request_prescription
+dziękuję	end_conversation
+Nie to wszystko Dziękuję za rozmowę	end_conversation
+Dzień dobry!	greeting
+dzień dobry chciałbym umówić się na wizytę u lekarza internisty	appointment/create_appointment
+Nie mam swojego identyfikatora nie pamiętam	login/forgot_id
+mój identyfikator to: <identyfikator>	login/enter_id
+czy są dostępne jakieś wizyty w terminie 20.04.2021 u dr Adam Skrzypczak?	request_information/available_dates
+tak	affirm
+jakie są dostępne terminy wizyt na 20.04.2021 u dowolnego internisty?	request_information/available_dates
+prosze o rejestrację do mrożego na 12:00 dziękuję to wszystko	appointment/create_appointment
+Witam Chciałbym zarezerwować wizytę u lekarza	appointment/create_appointment
+15.04.2021 12:00	appointment/set_date
+Ok dziękuję	affirm
+Dzień dobry	greeting
+Chciałbym umówić się na wizytę u specjalisty	appointment/create_appointment
+Proszę podać listę specjalistów	request_information/doctors
+Chciałbym wizytę u  Internista Andrzej Mroży	appointment/create_appointment
+wybieram termin 15.04.2021 o 14:30	appointment/set_date appointment/set_time
+dziękuję	end_conversation
+Dzień dobry	greeting
+Chciałabym odwołać wizytę	appointment/cancel
+owszem	affirm
+ok dzięki gdzie mam wizytę u dentysty Anny	appointment/where
+a jaki adres	request_information/location
+Dzień dobry!	greeting
+Chciałbym zarezerować wizytę u lekarza	appointment/create_appointment
+Chciałbym umówić wyzytę z dermatologiem	appointment/create_appointment
+Który ma wcześniejszy termin?	appointment/compare_dates
+To chciałbym zapisać się do Jana Kowalskiego	appointment/create_appointment
+15.04 o 14:30	appointment/set_date_and_time
+Ile będzie kosztowała?	request_information/cost
+W jakim gabinecie została umówiona wizyta?	appointment/location
+Dziękuję to by było wszystko	end_conversation
+Dzień dobry!	greeting
+Chciałbym zarezerwać wizytę	appointment/create_appointment
+Jan kowalski	appointment/select_doctor
+proszę o termin 14.04.2021 - 14:30	appointment/set_date_time
+Dziękuję	end_conversation
+Dzień dobry	greeting
+Chciałabym odebrać receptę	prescription/collect
+Chciałabym zamówić receptę	prescription/request
+Tak	affirm
+Dr Anna Kowalska	appointment/select_doctor
+Proszę zapisać mnie na termin 14.04.2021 13:30	appointment/create_appointment
+Dziękuje	end_conversation
+Dzień dobry!	greeting
+Dzień dobry Chciałabym sprawdzić wyniki swoich ostatnich badań	appointment/results
+Widzę wyniki badania okulistycznego Czy w pliku powinny znajdować się też dot badań cytologicznych?	affirm, appointment/results
+Teraz chyba widzę wszystko czego potrzebuję Czy możesz mi powiedzieć na kiedy mam umówione następne wizyty?	affirm appointment/when
+A o której mam dentystę?	appointment/when
+Ok Wszystko wiem dzięki!	end_conversation
+Hej	greeting
+Dzień dobry chciałbym umówić się na USG tarczycy	appointment/create_appointment
+Dzień dobry	greeting
+Chcialbym odebrać wyniki badań gastroskopii	result/collect
+Jakie mam zaplanowane wizyty?	appointment/check_appointments
+Chciałbym przenieść tą wizyte na 21.04.2021	appointment/set_date
+17:15	appointment/set_time
+Dziękuję bardzo	end_conversation
+Cześć	greeting
+Dziękuję to wszystko	end_conversation
+Chciałbym się zapisać na wizytę do okulisty Jakie są dostępne terminy?	appointment/create_appointment
+Chciałbym się zapisać na 14-ego jakie są dostępne godziny?	appointment/create_appointment
+Chciałbym tą 14:15	appointment/set_time
+Nie posiadam identyfikatora	deny
+TAK	affirm
+Jan Kowalski	register/enter_name
+jankowalski@gmailcom	register/enter_email
+Dziękuję za pomoc i miłego dnia	end_conversation
+Cześć	greeting
+Chciałem zapisać się na spotkanie na jutrzejszy dzień na godziny poranne	appointment/create_appointment
+Pani doktor Kowalskiej	appointment/select_doctor
+na 11	appointment/set_time
+Dobrze dziękuję za rozmowę	end_conversation
+Hej	greeting
+Dzień dobry chciałbym umówić się na wizytę do lekarza rodzinnego Najlepiej dzisiaj w godzinach popołudniowych	appointment/create_appointment
+A czy mogę zapisać się do Pani doktor Zofii Wątroby?	appointment/create_appointment
+Ten termin mi odpowiada!	appointment/confirm
+Tak bardzo dziękuję	affirm
+Chciałbym też od razu zrobić badania morfologii krwi Kiedy mogę przyjść na pobranie krwi?	appointment/create_appointment request_information/opening_hours
+Dziękuję bardzo za informację W takim przypadku to wszystko	end_conversation
+Dzień dobry	greeting
+Chcialbym odebrac receptę	prescription/collect
+e-receptę	prescription/type
+Tak	affirm
+Chciałbym również umówić spotkanie z lekarzem internistą	appointment/create_appointment
+Tak	affirm
+12.04.2021	appointment/set_date
+13:00	appointment/set_time
+Tak	affirm
+Gdzie obędzie się wizyta?	appointment/where
+Dziękuję za pomoc	end_conversation
+Cześć	greeting
+Chciałbym się dowiedzieć czy mam umówione jakieś wizyty	appointment/check_appointments
+Chciałbym odwołać wizytę u internisty	appointment/cancel
+Tak	affirm
+Jacy lekarze specjaliści przyjmują w państwa przychodni?	request_information/doctors
+Chciałbym umówić wizytę do doktora Kolano	appointment/create_appointment
+Ten termin mi odpowiada	appointment/confirm
+tak	affirm
+Nie to wszystko Do widzenia	end_conversation
+Cześć	greeting
+Jakie usługi medyczne są dostępne?	request_information/medical_services
+Chciałbym zapisać się do okulisty Ile kosztuje wizyta?	appointment/create_appointment request_information/cost
+Nie ten jest idealny	deny
+Tak	affirm
+Dziękuję za informację	end_conversation
+Nie dziękuję to wszystko	end_conversation

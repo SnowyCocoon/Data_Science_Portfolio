@@ -1,0 +1,17 @@
+#JSGF V1.0 UTF-8 pl;
+
+grammar book;
+
+public <greeting> = hej | cześć | elo | dzień dobry | witam | siemanko | siemanko witam w mojej kuchni | gitara siema;
+
+public <appointment> = chciałbym się umówić na wizytę <doctor> <dzien_rezerwacji>;
+
+public <appointment_test> = chciałbym się umówić na wizytę <dzien_rezerwacji>;
+
+<doctor> = do <imie_lekarza> {doctor_name};
+
+<imie_lekarza> = Jana Kolano | Tomasza Łokieto | Piotra Pająka;
+
+<dzien_rezerwacji> = na <dzien> {day};
+
+<dzien> = dzisiaj | jutro | poniedziałek | wtorek | środę | czwartek | piątek | sobotę | niedzielę;

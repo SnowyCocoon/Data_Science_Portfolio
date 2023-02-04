@@ -1,0 +1,5 @@
+Interlocutor	Text	Acts
+user	Hej	greeting()
+system	Witamy w systemie przychodni dr. Janet.	greeting()
+user	Dzień dobry, chciałbym umówić się na USG tarczycy.	request(appointment(type=USG tarczycy))
+system	W ramach działania naszej przychodni dostępni są następujący specjaliści: Dentysta Anna Kowalska, Okulista Jan Kowalski. Czy chciałby/chciałaby Pan/Pani umówić się do któregoś z wyżej wymienionych specjalistów?	inform(doctor=doctor_list)&request(appointment)

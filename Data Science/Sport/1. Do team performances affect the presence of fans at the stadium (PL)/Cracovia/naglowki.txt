@@ -1,0 +1,1 @@
+Data	Godzina	Gospodarz	Gość	Wynik	Miejscowość	Temperatura	Wilgotność	Prędkość wiatru	Opad	Mgła	Burza	Grają u siebie	Frekwencja	Wygrana

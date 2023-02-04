@@ -1,0 +1,5 @@
+Interlocutor	Text	Acts
+user	Chciałbym też od razu zrobić badania morfologii krwi. Kiedy mogę przyjść na pobranie krwi?	(request(info="morfologia krwi")&request(info="termin pobrania krwi"))
+system	Nie obsługujemy rezerwacji na pobieranie krwi. Na pobranie krwi proszę przyjść do naszej przychodni, do części laboratoryjnej w godzinach 8:00 do 16:00, siedem dni w tygodniu.	(inform(Rezerwacja Badania Krwi)&infrom(obsługa badań krwi))
+user	Dziękuję bardzo za informację. W takim przypadku to wszystko.	(thanks()&bye())
+system	Dziękujemy za skorzystanie z usług naszej przychodni. Zapraszamy ponownie!	(bye())
