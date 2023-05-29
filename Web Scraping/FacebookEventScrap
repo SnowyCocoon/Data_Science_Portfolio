@@ -1,0 +1,297 @@
+'''
+Author: Dominik Strzałko
+Start date: 3/13/2023
+Last update date: 5/29/2023
+Title: Kumo
+Description: Scraper for analyzing the anime/manga/fantasy conventions fun pages and events. 
+'''
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+from enum import Enum
+from scrapy import Spider, Request
+from scrapy.crawler import CrawlerProcess
+from selenium import webdriver
+from time import sleep
+import csv
+import re
+from selenium.webdriver.chrome.options import Options
+from scrapy.dupefilters import BaseDupeFilter
+from datetime import datetime
+
+scrappy_timeout = 2
+links = []
+final_data = []
+
+class WebpageType(Enum):
+    FB_EVENT = 1
+    FB_PAGE = 2
+    IG_PAGE = 3
+    UNKNOWN = 4
+
+def GoogleSheetsLoader():
+    # define the scope
+    scope = ["https://www.googleapis.com/auth/spreadsheets"]
+
+    # read the credentials from the file
+    creds = ServiceAccountCredentials.from_json_keyfile_name("nimble-lead.json", scope)
+
+    # authorize the client
+    client = gspread.authorize(creds)
+
+    # open the spreadsheet by its URL
+    sheet_url = "https://docs.google.com/spreadsheets/d/Your_Link_here/edit"
+    sheet = client.open_by_url(sheet_url)
+
+    # get the second subsheet
+    subsheet = sheet.get_worksheet(1)
+
+    # read the values from column B
+    values = subsheet.col_values(2)
+
+    for v in values:
+        if '.com' in v:
+            links.append(v)
+    
+    print(links)
+
+def GoogleSheetsWriter(data):
+    # define the scope
+    scope = ["https://www.googleapis.com/auth/spreadsheets"]
+
+    # read the credentials from the file
+    creds = ServiceAccountCredentials.from_json_keyfile_name("nimble-lead-380800-6febd62dbcda.json", scope)
+
+    # authorize the client
+    client = gspread.authorize(creds)
+
+    # open the spreadsheet by its URL
+    sheet_url = "https://docs.google.com/spreadsheets/d/107VK4FAt5lTxy0HR13vEtQ34QZHna1bYmZXg7eGMNrE/edit"
+    sheet = client.open_by_url(sheet_url)
+
+    # get the first subsheet
+    subsheet = sheet.get_worksheet(0)
+
+    # convert data to a 2D list
+    values = []
+    values.append(["","", datetime.now().strftime("%d-%m-%Y_%H-%M-%S")])
+    for row in data:
+        if "events/" in row[0]:
+            values.append([row[0],"EVENT - going/went", row[1]])
+            values.append([row[0],"EVENT - interested", row[2]])
+        elif "events/" not in row[0] and "facebook" in row[0]:
+            values.append([row[0],"FB - likes", row[1]])
+            values.append([row[0],"FB - followers", row[2]])
+        elif "instagram" in row[0]:
+            values.append([row[0],"IG - posts", row[1]])
+            values.append([row[0],"IG - followers", row[2]])
+        else:
+            values.append("ERROR","ERROR","ERROR")
+            values.append("ERROR","ERROR","ERROR")
+
+
+    # write the values to the sheet
+    subsheet.append_rows(values)
+
+    print("Data written to Google Sheet.")
+
+class Kumo(Spider):
+    name = 'kumo'
+    custom_settings = {
+        'DUPEFILTER_DEBUG': False,
+        'DUPEFILTER_CLASS': BaseDupeFilter
+    }
+    page_type = WebpageType.UNKNOWN
+    start_urls = links
+
+    def __init__(self):
+        self.filename = 'output_' + datetime.now().strftime("%d-%m-%Y_%H-%M-%S") + '.csv'
+        options = Options()
+        options.headless = True
+        self.driver = webdriver.Chrome(options=options)
+        self.driver.maximize_window()
+        self.cookies_dict = dict()
+        self.page = 0
+        for cookie in self.driver.get_cookies():
+            self.cookies_dict[cookie['name']] = cookie['value']
+
+    def start_requests(self):
+        self.webpage_type_checker(self.start_urls[self.page])
+        yield Request(url=self.start_urls[self.page], cookies=self.cookies_dict, callback=self.parse, dont_filter=True)
+
+    def close_popups(self):
+        sleep(scrappy_timeout)
+        try:            
+            popup_close = self.driver.find_element("xpath","//div[@aria-label='Allow essential and optional cookies' and (not(@aria-disabled) or @aria-disabled='false')]")            
+            popup_close.click()
+        except Exception as e:
+            print("ERROR 0", e)
+
+    def parse(self, response):
+        sleep(scrappy_timeout)
+        self.driver.get(response.url)
+        #self.close_popups()
+        if self.page_type == WebpageType.FB_EVENT:
+            try:
+                participants = re.findall("event_connected_users_going\":{\"count\":(\d+)",response.text)
+                participants=participants[0]
+                #participants = self.driver.find_element("xpath","//span[text()='GOING' or text()='Went']/parent::*/span").get_attribute('innerHTML')
+            except Exception as e:
+                participants = ''
+                print("ERROR p", e)
+                
+            try:
+                interested = re.findall("event_connected_users_interested\":{\"count\":(\d+)",response.text)
+                interested = interested[0]
+            except Exception as e:
+                interested = ''
+                print("ERROR i", e)
+            
+            print('\n\n\n')
+            print("participants: ", participants)
+            print("interested: ", interested)
+            print('\n\n\n')
+
+            row = []
+            row.append(self.start_urls[self.page].strip())
+            row.append(self.process_text(participants))
+            row.append(self.process_text(interested))
+            final_data.append((row[0],row[1],row[2]))
+        if self.page_type == WebpageType.FB_PAGE:
+            try:
+                #(\d+) likes &#xb7;
+                likes = re.findall("([\d,]+) likes &#xb7;",response.text)
+                likes=likes[0]
+                #likes = self.driver.find_element("xpath","//a[text()=' likes']").get_attribute('innerHTML')
+            except Exception as e:
+                likes = ''
+                print("ERROR p", e)
+
+            if likes == '':
+                try:
+                    #(\d+) likes &#xb7;
+                    likes = re.findall("([\d,]+) likes.",response.text)
+                    likes=likes[0]
+                    #likes = self.driver.find_element("xpath","//a[text()=' likes']").get_attribute('innerHTML')
+                except Exception as e:
+                    likes = ''
+                    print("ERROR p", e)
+
+            try:
+                followers = self.driver.find_element("xpath","//a[text()=' followers']").get_attribute('innerHTML')
+                if "followers" in followers:
+                    followers = re.findall("([\d.]+\s?K?) followers",followers)
+                    followers = followers[0]
+            except Exception as e:
+                followers = ''
+                print("ERROR i", e)
+            
+            if followers == '':
+                try:
+                    followers = re.findall("([\d.]+\s?K?) followers\"},\"uri\"",response.text)
+                    followers=followers[0]
+                except Exception as e:
+                    followers = ''
+                    print("ERROR p", e)
+
+            print('\n\n\n')
+            print("likes: ", likes)
+            print("followers: ", followers)
+            print('\n\n\n')
+
+            row = []
+            row.append(self.start_urls[self.page].strip())
+            if likes != '': #Some pages do not have a like counter, only followers and following (We don't need the following counter)
+                row.append(self.process_text(likes.split()[0]))
+            else:
+                row.append(0)
+            if followers != '':
+                row.append(self.process_text(followers.split()[0]))
+            else:
+                row.append(0)
+            final_data.append((row[0],row[1],row[2]))
+        if self.page_type == WebpageType.IG_PAGE:
+            #<meta content="1,944 Followers, 99 Following, 139 Posts
+            try:
+                text =  re.findall("<meta content=\"([\d,]+\s?K?) Followers, ([\d,]+\s?K?) Following, ([\d,]+\s?K?) Posts",response.text)
+                posts = text[0][2]
+                followers = text[0][0]
+            except Exception as e:
+                posts = ''
+                followers = ''
+                print("ERROR p", e)
+            
+            if followers == '':
+                try: 
+                    text =  re.findall("<meta content=\"([\d,]+\s?K?) Followers, ([\d,]+\s?K?) Posts",response.text)
+                    posts = text[0][1]
+                    followers = text[0][0]
+                except Exception as e:
+                    posts = ''
+                    followers = ''
+                    print("ERROR p", e)
+                    
+            #try:
+            #    followers = self.driver.find_element("xpath","//div[contains(text(),' followers')]/span/span").get_attribute('innerHTML')
+            #except Exception as e:
+            #    followers = ''
+            #    print("ERROR i", e)
+            
+            print('\n\n\n')
+            print("posts: ", posts)
+            print("followers: ", followers)
+            print('\n\n\n')
+
+            row = []
+            row.append(self.start_urls[self.page].strip())
+            row.append(self.process_text(posts.split()[0]))
+            row.append(self.process_text(followers.split()[0]))
+            final_data.append((row[0],row[1],row[2]))
+
+        with open(self.filename, 'a+', newline='') as file:
+            write = csv.writer(file, delimiter=',')
+            write.writerows([row])
+
+
+        if self.page < len(self.start_urls)-1: # TODO
+            self.page += 1
+            print("PAGE " + str(self.page) + "/" + str(len(self.start_urls)))
+            self.webpage_type_checker(self.start_urls[self.page])
+            yield Request(url=self.start_urls[self.page], cookies=self.cookies_dict, callback=self.parse)
+            sleep(scrappy_timeout)
+        else:
+            self.driver.close()
+        
+    def webpage_type_checker(self, link):
+        if "events/" in link and "facebook" in link:
+            self.page_type = WebpageType.FB_EVENT
+        elif "events" not in link and "facebook" in link:
+            self.page_type = WebpageType.FB_PAGE
+        elif "instagram" in link:
+            self.page_type = WebpageType.IG_PAGE
+        else:
+            self.page_type = WebpageType.UNKNOWN
+    
+    def process_text(self, text):
+        # Replace commas with nothing to remove them
+        text = text.replace(",", "")
+
+        # Find numbers with K or k and convert to full number
+        pattern = r"(\d+(\.\d+)?)[Kk]"
+        matches = re.findall(pattern, text)
+        for match in matches:
+            full_num = int(float(match[0]) * 1000)
+            text = text.replace(match[0] + "K", str(full_num))
+            text = text.replace(match[0] + "k", str(full_num))
+
+        return text
+        
+
+if __name__ == '__main__':
+    GoogleSheetsLoader()
+    #links.append("https://www.facebook.com/DniFantastyki")
+    #links.append("https://www.facebook.com/events/549361456435473/")
+    #links.append("https://www.facebook.com/hikari0fest")
+    process = CrawlerProcess()
+    process.crawl(Kumo)
+    process.start()
+    GoogleSheetsWriter(final_data)
