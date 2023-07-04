@@ -28,7 +28,7 @@ It's a chatbot created as a final project during the "dialogue systems" classes 
 Together with my friends, including one that finished ISIPCA, one of the most prestigious schools for post-graduate studies in perfume, we are creating an AI-powered perfume recommendation system. Right now its based on data from various free databases of perfumes and scraped data from other websites about perfumes. We're using different technologies like tf-idf, doc2vec, or BERT to analyze user input of selected scents and description and recommend the best perfume for him. I work as a lead Python programmer on this project and also as a project manager.  
 **Tech stack:** Python, nltk, sklearn, transformers, streamlit
 
-![alt](NLP\11. Perfumex\perfumex_screen.png)
+![image](https://github.com/SnowyCocoon/Data_Science_Portfolio/blob/master/NLP/11.%20Perfumex/perfumex_screen.png)
 
 # Less important projects, but worth mentioning (WIP)
 
